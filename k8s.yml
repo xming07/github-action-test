@@ -13,6 +13,6 @@ spec:
         add:
         - ALL
   - name: shell
-    image: ubuntu:18.04
-    command: sleep
+    image: busybox
+    command: ["sleep"]
     args: ["infinity"]
