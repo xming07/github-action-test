@@ -6,11 +6,19 @@ pipeline {
             yamlFile k8s_yaml
         }
     }
+    environment {
+        KUBERNETES_NAMESPACE = 'default'
+    }
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+        disableConcurrentBuilds()
+        skipDefaultCheckout()
+    }
     stages {
         stage('Main') {
-            container('jnlp'){
-
-                steps {
+            steps {
+                container('jnlp') {
                     sh 'hostname'
                 }
             }
