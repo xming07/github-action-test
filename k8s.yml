@@ -4,7 +4,7 @@ spec:
   containers:
   - name: jnlp
     image: jenkins/inbound-agent:latest
-    imagePullPolicy: Never
+    imagePullPolicy: IfNotPresent
     securityContext:
       # ubuntu runs as root by default, it is recommended or even mandatory in some environments (such as pod security admission "restricted") to run as a non-root user.
       runAsUser: 1000
@@ -13,6 +13,7 @@ spec:
         add:
         - ALL
   - name: shell
-    image: busybox
+    image: busybox:latest
+    imagePullPolicy: IfNotPresent
     command: ["sleep"]
     args: ["infinity"]
